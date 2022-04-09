@@ -52,6 +52,5 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-          echo ${{ secrets.SSH_PRIVATE_KEY }} > private_key && chmod 600 private_key
+
 
