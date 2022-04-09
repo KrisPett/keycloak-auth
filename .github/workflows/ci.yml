@@ -46,17 +46,12 @@ jobs:
     needs: build-and-push-image
 
     steps:
-      - name: Log in to the Container registry
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
-
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          host: ${{ secrets.EC2_SERVER }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: whoami
 
-          script: |
-            echo ${{ secrets.SSH_PRIVATE_KEY }} | tr -d '\r' | ssh-add -
-            mkdir -p ~/.ssh
-            chmod 700 ~/.ssh
-            ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.EC2_SERVER }} 'docker-compose -f docker-compose-keycloak-auth.yml pull && docker-compose -f docker-compose-keycloak-auth.yml up -d'
 
