@@ -55,5 +55,8 @@ jobs:
           script: |
             whoami
             ls -al
+            cat .bash_aliases
+            ssh-keycloak-auth-client-deploy
+            
 
 
