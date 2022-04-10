@@ -52,6 +52,6 @@ jobs:
           host: ${{ secrets.EC2_SERVER }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: docker-compose -f docker-compose-keycloak-auth.yml pull && docker-compose -f docker-compose-keycloak-auth.yml up -d
+          script: ssh-keycloak-auth-client-deploy
 
 
