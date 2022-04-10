@@ -56,7 +56,4 @@ jobs:
             whoami
             ls -al
             cat .bash_aliases
-            ssh-keycloak-auth-client-deploy
-            
-
-
+            ssh -o StrictHostKeyChecking=no -t ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_SERVER }} /bin/bash -ic "ssh-keycloak-auth-client-deploy"
