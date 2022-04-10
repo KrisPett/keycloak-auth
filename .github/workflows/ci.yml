@@ -52,6 +52,6 @@ jobs:
           host: ${{ secrets.EC2_SERVER }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: ./deploy_to_aws.sh
+          script: docker-compose-keycloak-auth.yml
 
 
