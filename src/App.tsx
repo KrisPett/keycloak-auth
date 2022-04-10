@@ -14,7 +14,6 @@ function App() {
           </Container>
         </RootModelProvider>
       </ThemeProvider>
-      /*teswwdffefwddrw3rdffft*/
   );
 }
 

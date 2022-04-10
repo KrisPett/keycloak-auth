@@ -54,4 +54,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-            docker-compose-keycloak-auth.sh
+            ./docker-compose-keycloak-auth.sh
