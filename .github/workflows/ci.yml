@@ -46,13 +46,12 @@ jobs:
     needs: build-and-push-image
 
     steps:
-      - name: Log in to registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_SERVER }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: ./docker-compose-keycloak-auth.sh
+          script: |
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            ./docker-compose-keycloak-auth.sh
