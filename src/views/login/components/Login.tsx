@@ -5,7 +5,7 @@ const Login = () => {
     return (
         <Grid container justifyContent={"center"} marginTop={15}>
             <Button>Keycloak</Button>
-            <Button>KeycloakTest</Button>
+            <Button>Keycloak</Button>
             <Button>Keycloak</Button>
         </Grid>
     );
