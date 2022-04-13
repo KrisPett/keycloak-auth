@@ -4,7 +4,7 @@
     </p>
 </div>
 
-## Client URL 
+## Client URL [ChainQT3](https://chainqt3.win/) 
 
 ## Install client
 
