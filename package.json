@@ -10,6 +10,7 @@
     "@mui/lab": "^5.0.0-alpha.76",
     "@mui/material": "^5.6.0",
     "@mui/system": "^5.6.0",
+    "@react-keycloak/web": "^3.4.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -17,8 +18,11 @@
     "@types/node": "^16.11.26",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
+    "@types/react-helmet": "^6.1.5",
     "date-fns": "^2.28.0",
     "framer-motion": "^6.2.9",
+    "keycloak-js": "^17.0.1",
+    "keycloakify": "^4.7.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-draggable": "^4.4.4",
@@ -32,7 +36,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "keycloak": "yarn build && build-keycloak-theme"
   },
   "eslintConfig": {
     "extends": [

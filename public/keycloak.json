@@ -1,0 +1,10 @@
+{
+  "realm": "chainqt3",
+  "auth-server-url": "https://iam-keycloak.win/auth",
+  "ssl-required": "external",
+  "resource": "chainqt3-keycloak",
+  "public-client": true,
+  "verify-token-audience": true,
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
+}

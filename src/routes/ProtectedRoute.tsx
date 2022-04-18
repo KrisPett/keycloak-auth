@@ -1,17 +1,16 @@
 import {Navigate,} from 'react-router-dom';
+import {useKeycloak} from "@react-keycloak/web";
 
 type Props = {
     children: JSX.Element
 }
 
 export default function ProtectedRoute({children}: Props) {
-/*
-    const {isAuthenticated} = useMoralis();
-*/
+    const {keycloak} = useKeycloak();
 
- /*   if (!isAuthenticated) {
+    if (!keycloak.authenticated) {
         return <Navigate to="/" replace/>;
-    }*/
+    }
 
     return children;
 };
