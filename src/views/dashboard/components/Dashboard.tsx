@@ -4,8 +4,8 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import useTheme from "@mui/material/styles/useTheme";
-import {useKeycloak} from "@react-keycloak/web";
 import {styled} from "@mui/material/styles";
+import {useKeycloak} from "@react-keycloak/web";
 
 interface ITableRowField {
     rowTitle: string | undefined;
@@ -57,7 +57,8 @@ const TableRowField: FC<ITableRowField> = ({rowTitle, rowValue}) => {
 }
 
 const Dashboard = () => {
-    const {keycloak} = useKeycloak();
+    const {keycloak, initialized} = useKeycloak();
+
     const theme = useTheme();
     const isMobileSize = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -65,8 +66,8 @@ const Dashboard = () => {
         <Box>
             <Paper>
                 <Grid container p={isMobileSize ? 5 : 10} direction={"column"} rowGap={5}>
-                    <TableRowField rowTitle={"ID Token"} rowValue={keycloak.idToken}/>
-                    <TableRowField rowTitle={"Session ID"} rowValue={keycloak.sessionId}/>
+                    <TableRowField rowTitle={"Username"} rowValue={keycloak.tokenParsed?.preferred_username}/>
+                    <TableRowField rowTitle={"ID Token"} rowValue={keycloak.token}/>
                     <Grid item alignSelf={"end"}>
                         <Button size={"large"} onClick={() => keycloak.logout()}>logout</Button>
                     </Grid>

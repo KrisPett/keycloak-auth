@@ -19,6 +19,7 @@
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
     "@types/react-helmet": "^6.1.5",
+    "axios": "^0.26.1",
     "date-fns": "^2.28.0",
     "framer-motion": "^6.2.9",
     "keycloak-js": "^17.0.1",

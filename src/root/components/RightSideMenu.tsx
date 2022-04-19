@@ -292,6 +292,7 @@ const RightSideMenu: FC<I> = (props) => {
                         X
                     </Button>
                 </Grid>
+
             </Grid>
             <TabPanel value={tabValue} index={0}>
                 <SideMenuCalenderPage/>
