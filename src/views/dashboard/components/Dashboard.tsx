@@ -6,6 +6,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import useTheme from "@mui/material/styles/useTheme";
 import {styled} from "@mui/material/styles";
 import {useKeycloak} from "@react-keycloak/web";
+import {Navigate, useNavigate} from "react-router-dom";
+import {LinkToLoginView, LinkToOverviewView} from "../../../routes/MainRoutes";
 
 interface ITableRowField {
     rowTitle: string | undefined;
@@ -58,7 +60,6 @@ const TableRowField: FC<ITableRowField> = ({rowTitle, rowValue}) => {
 
 const Dashboard = () => {
     const {keycloak, initialized} = useKeycloak();
-
     const theme = useTheme();
     const isMobileSize = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -69,7 +70,10 @@ const Dashboard = () => {
                     <TableRowField rowTitle={"Username"} rowValue={keycloak.tokenParsed?.preferred_username}/>
                     <TableRowField rowTitle={"ID Token"} rowValue={keycloak.token}/>
                     <Grid item alignSelf={"end"}>
-                        <Button size={"large"} onClick={() => keycloak.logout()}>logout</Button>
+                        <Button size={"large"}
+                                onClick={() => keycloak.logout().success(() => <Navigate to={LinkToLoginView()} replace/>)}>
+                            logout
+                        </Button>
                     </Grid>
                 </Grid>
             </Paper>

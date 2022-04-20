@@ -14,7 +14,7 @@ import RightSideMenu from "./RightSideMenu";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import useTheme from "@mui/material/styles/useTheme";
 import {ToggleButton} from "@mui/lab";
-import {LinkToDashboardOverviewView, LinkToProfileView} from "../../routes/MainRoutes";
+import {LinkToOverviewView, LinkToProfileView} from "../../routes/MainRoutes";
 import IconStyle from "../../assets/themes/components/IconStyle";
 
 interface DrawerMenuI {
@@ -41,7 +41,7 @@ const Header: FC<DrawerMenuI> = (props) => {
                     value={"check"}
                     selected={false}
                     sx={{border: "2px solid transparent"}}
-                    component={RouterLink} to={LinkToDashboardOverviewView()}
+                    component={RouterLink} to={LinkToOverviewView()}
                 >
                     <HomeIcon color="action"/>
                 </ToggleButton>

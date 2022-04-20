@@ -4,8 +4,9 @@ import MainRoutes from './routes/MainRoutes';
 import {RootModelProvider} from "./root/RootModelContext";
 import mainTheme from "./assets/themes/mainTheme";
 import {ReactKeycloakProvider} from "@react-keycloak/web";
-import {keycloak} from "./services/UserService"
 import {BrowserRouter} from "react-router-dom";
+import {keycloak} from "./keycloak";
+
 
 function App() {
     return (

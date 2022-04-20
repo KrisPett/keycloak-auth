@@ -8,11 +8,17 @@ import Collapse from '@mui/material/Collapse';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import {RootModel} from "../RootModel";
 import {RootModelContext} from "../RootModelContext";
-import {Button, Divider, Grid, ListItemButton, Popover} from '@mui/material';
+import {Divider, Grid, ListItemButton} from '@mui/material';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import useTheme from "@mui/material/styles/useTheme";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import {LinkToLoginView, LinkToOverviewView} from "../../routes/MainRoutes";
+import {
+    LinkToAnalyticsView,
+    LinkToFinanceView,
+    LinkToLoginView,
+    LinkToLogisticsView,
+    LinkToOverviewView
+} from "../../routes/MainRoutes";
 
 interface Props {
     isOpen?: boolean,
@@ -86,12 +92,21 @@ const SideMenu = (props: Props) => {
                                     >
                                         <Typography>Dashboard</Typography>
                                     </ListItemButton>
-                                    <ListItemButton sx={{padding: 2}}>
+                                    <ListItemButton sx={{padding: 2}}
+                                                    component={RouterLink}
+                                                    to={LinkToAnalyticsView()}
+                                    >
                                         <Typography>Analytics</Typography>
                                     </ListItemButton>
-                                    <ListItemButton sx={{padding: 2}}>
+                                    <ListItemButton sx={{padding: 2}}
+                                                    component={RouterLink}
+                                                    to={LinkToFinanceView()}
+                                    >
                                         <Typography>Finance</Typography></ListItemButton>
-                                    <ListItemButton sx={{padding: 2}}>
+                                    <ListItemButton sx={{padding: 2}}
+                                                    component={RouterLink}
+                                                    to={LinkToLogisticsView()}
+                                    >
                                         <Typography>Logistics</Typography>
                                     </ListItemButton>
                                 </List>

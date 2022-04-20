@@ -9,22 +9,27 @@ import ProtectedRoute from "./ProtectedRoute";
 import LoginView from "../views/login/LoginView";
 import {useKeycloak} from "@react-keycloak/web";
 import RenderOnAuthenticated from "../utils/RenderOnAuthenticated";
-import RenderOnAnonymous from "../utils/RenderOnAnonymous";
+import FinanceView from "../views/finance/FinanceView";
+import LogisticsView from "../views/logistics/LogisticsView";
+import Analytics from "../views/analytics/components/Analytics";
+import {RolesRoute} from "./RolesRoute";
 
 /* ROUTE LINKS */
-export const LinkToDashboardOverviewView = () => "/dashboard/overview";
-export const LinkToOverviewView = () => "overview";
-export const LinkToProfileView = () => "profile";
+export const LinkToOverviewView = () => "/dashboard/overview";
+export const LinkToProfileView = () => "/dashboard/profile";
 export const LinkToLoginView = () => "/login";
+export const LinkToAnalyticsView = () => "/dashboard/analytics";
+export const LinkToFinanceView = () => "/dashboard/finance";
+export const LinkToLogisticsView = () => "/dashboard/logistics";
 export const LinkTo404NotFound = () => "404";
 /* ROUTE LINKS */
 
 export default function MainRouter() {
-    const {keycloak} = useKeycloak();
+    const {keycloak, initialized} = useKeycloak();
 
     return (
         <Routes>
-            <Route path="/dashboard"
+            <Route path={"dashboard"}
                    element={
                        <ProtectedRoute>
                            <RenderOnAuthenticated>
@@ -32,13 +37,15 @@ export default function MainRouter() {
                            </RenderOnAuthenticated>
                        </ProtectedRoute>}>
                 <Route path={LinkToOverviewView()} element={<DashboardView/>}/>
+                <Route path={LinkToAnalyticsView()} element={<Analytics/>}/>
+                <Route path={LinkToFinanceView()} element={<RolesRoute roles={["user"]}><FinanceView/></RolesRoute>}/>
+                <Route path={LinkToLogisticsView()} element={<RolesRoute roles={["admin"]}><LogisticsView/></RolesRoute>}/>
                 <Route path={LinkToProfileView()} element={<ProfileView/>}/>
-                <Route path="/dashboard" element={<Navigate to={LinkToOverviewView()}/>}/>
             </Route>
             <Route path={"/"} element={<LoginStyle/>}>
                 <Route path={LinkToLoginView()}
                        element={!keycloak.authenticated ?
-                           <LoginView/> : <Navigate to={LinkToDashboardOverviewView()} replace/>}
+                           <LoginView/> : <Navigate to={LinkToOverviewView()} replace/>}
                 />
                 <Route path={LinkTo404NotFound()} element={<Page404NotFound/>}/>
                 <Route path="/" element={<Navigate to={LinkToLoginView()}/>}/>
