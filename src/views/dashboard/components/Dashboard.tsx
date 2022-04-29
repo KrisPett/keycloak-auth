@@ -9,6 +9,7 @@ import {useKeycloak} from "@react-keycloak/web";
 import {Navigate, useNavigate} from "react-router-dom";
 import {LinkToLoginView, LinkToOverviewView} from "../../../routes/MainRoutes";
 import {fetchDashboard} from "../DashboardApi";
+import SecuringProgress from "../../../utils/SecuringProgress";
 
 interface ITableRowField {
     rowTitle: string | undefined;
