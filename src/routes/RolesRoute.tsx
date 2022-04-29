@@ -1,7 +1,6 @@
-import {Navigate, Route, useLocation} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import {useKeycloak} from "@react-keycloak/web";
-import Page404NotFound from "../utils/Page404NotFound";
-import {Container, Typography} from "@mui/material";
+import {Container} from "@mui/material";
 import {LinkTo404NotFound} from "./MainRoutes";
 
 type Props = {
@@ -11,7 +10,6 @@ type Props = {
 
 export function RolesRoute({children, roles}: Props) {
     const {keycloak, initialized} = useKeycloak();
-    let location = useLocation();
 
     const hasRole = (roles: string[]) => roles.some(role => keycloak.hasResourceRole(role));
 

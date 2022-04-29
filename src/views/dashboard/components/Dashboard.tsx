@@ -8,6 +8,7 @@ import {styled} from "@mui/material/styles";
 import {useKeycloak} from "@react-keycloak/web";
 import {Navigate, useNavigate} from "react-router-dom";
 import {LinkToLoginView, LinkToOverviewView} from "../../../routes/MainRoutes";
+import {fetchDashboard} from "../DashboardApi";
 
 interface ITableRowField {
     rowTitle: string | undefined;
@@ -62,17 +63,34 @@ const Dashboard = () => {
     const {keycloak, initialized} = useKeycloak();
     const theme = useTheme();
     const isMobileSize = useMediaQuery(theme.breakpoints.down('md'));
+    console.log(keycloak.tokenParsed)
+    const token = keycloak.token;
+    console.log(token)
+
+    function testFetchHandler() {
+        return fetchDashboard(token).then(res => console.log(res));
+    }
 
     return (
         <Box>
             <Paper>
                 <Grid container p={isMobileSize ? 5 : 10} direction={"column"} rowGap={5}>
                     <TableRowField rowTitle={"Username"} rowValue={keycloak.tokenParsed?.preferred_username}/>
+                    <TableRowField rowTitle={"Firstname"} rowValue={keycloak.tokenParsed?.given_name}/>
+                    <TableRowField rowTitle={"Lastname"} rowValue={keycloak.tokenParsed?.family_name}/>
                     <TableRowField rowTitle={"ID Token"} rowValue={keycloak.token}/>
                     <Grid item alignSelf={"end"}>
                         <Button size={"large"}
-                                onClick={() => keycloak.logout().success(() => <Navigate to={LinkToLoginView()} replace/>)}>
+                                onClick={() => keycloak.logout().success(() => <Navigate to={LinkToLoginView()} replace/>)}
+                        >
                             logout
+                        </Button>
+                    </Grid>
+                    <Grid item alignSelf={"end"}>
+                        <Button size={"large"}
+                                onClick={() => testFetchHandler()}
+                        >
+                            Test Fetch
                         </Button>
                     </Grid>
                 </Grid>

@@ -7,7 +7,6 @@ import Page from '../root/components/Page';
 import illustration404 from "../assets/images/illustrations/illustration_404.svg";
 import React from "react";
 import {useKeycloak} from "@react-keycloak/web";
-import DownloadingRounded from "@mui/icons-material/DownloadingRounded";
 
 const RootStyle = styled(Page)(({theme}) => ({
     display: 'flex',
@@ -20,15 +19,13 @@ const RootStyle = styled(Page)(({theme}) => ({
 export default function Page404NotFound() {
     const {keycloak, initialized} = useKeycloak();
 
-    const hasRole = (roles: string[]) => roles.some(role => keycloak.hasResourceRole(role));
-
     return (
         <RootStyle title="404 Page Not Found | Minimal-UI">
             {initialized ?
                 <Container>
                     <MotionContainer open>
                         <Box sx={{maxWidth: 480, margin: 'auto', textAlign: 'center'}}>
-                            {keycloak.authenticated && !hasRole(["admin"]) ?
+                            {keycloak.authenticated ?
                                 <>
                                     <motion.div variants={varBounceIn}>
                                         <Typography variant={"h4"}>Access is not allowed! ⛔️</Typography>
@@ -48,7 +45,6 @@ export default function Page404NotFound() {
                                         </Typography>
                                     </motion.div>
                                 </>
-
                             }
                             <motion.div variants={varBounceIn}>
                                 <Box

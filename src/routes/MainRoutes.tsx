@@ -29,13 +29,7 @@ export default function MainRouter() {
 
     return (
         <Routes>
-            <Route path={"dashboard"}
-                   element={
-                       <ProtectedRoute>
-                           <RenderOnAuthenticated>
-                               <MainStyle/>
-                           </RenderOnAuthenticated>
-                       </ProtectedRoute>}>
+            <Route path={"dashboard"} element={<ProtectedRoute><RenderOnAuthenticated><MainStyle/></RenderOnAuthenticated></ProtectedRoute>}>
                 <Route path={LinkToOverviewView()} element={<DashboardView/>}/>
                 <Route path={LinkToAnalyticsView()} element={<Analytics/>}/>
                 <Route path={LinkToFinanceView()} element={<RolesRoute roles={["user"]}><FinanceView/></RolesRoute>}/>
@@ -43,10 +37,7 @@ export default function MainRouter() {
                 <Route path={LinkToProfileView()} element={<ProfileView/>}/>
             </Route>
             <Route path={"/"} element={<LoginStyle/>}>
-                <Route path={LinkToLoginView()}
-                       element={!keycloak.authenticated ?
-                           <LoginView/> : <Navigate to={LinkToOverviewView()} replace/>}
-                />
+                <Route path={LinkToLoginView()} element={!keycloak.authenticated ? <LoginView/> : <Navigate to={LinkToOverviewView()} replace/>}/>
                 <Route path={LinkTo404NotFound()} element={<Page404NotFound/>}/>
                 <Route path="/" element={<Navigate to={LinkToLoginView()}/>}/>
                 <Route path="*" element={<Navigate to={LinkTo404NotFound()}/>}/>
