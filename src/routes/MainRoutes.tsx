@@ -13,6 +13,8 @@ import FinanceView from "../views/finance/FinanceView";
 import LogisticsView from "../views/logistics/LogisticsView";
 import Analytics from "../views/analytics/components/Analytics";
 import {RolesRoute} from "./RolesRoute";
+import {CircularProgress, Typography} from "@mui/material";
+
 
 /* ROUTE LINKS */
 export const LinkToOverviewView = () => "/dashboard/overview";
@@ -29,18 +31,23 @@ export default function MainRouter() {
 
     return (
         <Routes>
-            <Route path={"dashboard"} element={<ProtectedRoute><RenderOnAuthenticated><MainStyle/></RenderOnAuthenticated></ProtectedRoute>}>
+            <Route path={"dashboard"} element={
+                <ProtectedRoute><RenderOnAuthenticated><MainStyle/></RenderOnAuthenticated></ProtectedRoute>}>
                 <Route path={LinkToOverviewView()} element={<DashboardView/>}/>
                 <Route path={LinkToAnalyticsView()} element={<Analytics/>}/>
                 <Route path={LinkToFinanceView()} element={<RolesRoute roles={["user"]}><FinanceView/></RolesRoute>}/>
-                <Route path={LinkToLogisticsView()} element={<RolesRoute roles={["admin"]}><LogisticsView/></RolesRoute>}/>
+                <Route path={LinkToLogisticsView()}
+                       element={<RolesRoute roles={["employee"]}><LogisticsView/></RolesRoute>}/>
                 <Route path={LinkToProfileView()} element={<ProfileView/>}/>
             </Route>
             <Route path={"/"} element={<LoginStyle/>}>
-                <Route path={LinkToLoginView()} element={!keycloak.authenticated ? <LoginView/> : <Navigate to={LinkToOverviewView()} replace/>}/>
-                <Route path={LinkTo404NotFound()} element={<Page404NotFound/>}/>
-                <Route path="/" element={<Navigate to={LinkToLoginView()}/>}/>
-                <Route path="*" element={<Navigate to={LinkTo404NotFound()}/>}/>
+            {/*    {initialized ? <>*/}
+                    <Route path={LinkToLoginView()} element={!keycloak.authenticated ? <LoginView/> : <Navigate to={LinkToOverviewView()} replace/>}/>
+             {/*   </> : <></>}*/}
+                    <Route path={LinkTo404NotFound()} element={<Page404NotFound/>}/>
+                    <Route path="/" element={<Navigate to={LinkToLoginView()}/>}/>
+                    <Route path="*" element={<Navigate to={LinkTo404NotFound()}/>}/>
+
             </Route>
         </Routes>
     )
