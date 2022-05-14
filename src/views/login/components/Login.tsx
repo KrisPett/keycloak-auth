@@ -10,13 +10,10 @@ const Login = () => {
 
     return (
         <Grid container justifyContent={"center"} marginTop={15}>
-            {initialized ? <>
-                <Button
-                    onClick={() => keycloak.login().success(() => <Navigate to={LinkToOverviewView()} replace/>)}>
-                    Keycloak Login
-                </Button>
-            </> : <><SecuringProgress/></>
-            }
+            <Button
+                onClick={() => keycloak.login().success(() => <Navigate to={LinkToOverviewView()} replace/>)}>
+                Keycloak Login
+            </Button>
         </Grid>
     );
 };
