@@ -11,7 +11,7 @@ export default function Footer() {
     const [value, setValue] = React.useState(0);
 
     return (
-        <Paper sx={{ position: 'fixed', bottom: 0, left: "15%", right: 0, width: "80%" }} elevation={3}>
+        <Paper sx={{marginTop: 5,}} elevation={3}>
             <Box sx={{}}>
                 <BottomNavigation
                     showLabels
@@ -20,9 +20,9 @@ export default function Footer() {
                         setValue(newValue);
                     }}
                 >
-                    <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-                    <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-                    <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+                    <BottomNavigationAction label="Recents" icon={<RestoreIcon/>}/>
+                    <BottomNavigationAction label="Favorites" icon={<FavoriteIcon/>}/>
+                    <BottomNavigationAction label="Nearby" icon={<LocationOnIcon/>}/>
                 </BottomNavigation>
             </Box>
         </Paper>

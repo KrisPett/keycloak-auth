@@ -1,26 +1,16 @@
 import React from 'react';
-import {Container, CssBaseline, ThemeProvider} from "@mui/material";
-import MainRoutes from './routes/MainRoutes';
-import {RootModelProvider} from "./root/RootModelContext";
+import {ThemeProvider} from "@mui/material";
 import mainTheme from "./assets/themes/mainTheme";
-import {ReactKeycloakProvider, useKeycloak} from "@react-keycloak/web";
-import {BrowserRouter} from "react-router-dom";
+import {ReactKeycloakProvider} from "@react-keycloak/web";
 import {keycloak} from "./keycloak";
-
+import Root from "./root/Root";
 
 function App() {
 
     return (
         <ReactKeycloakProvider authClient={keycloak}>
             <ThemeProvider theme={mainTheme}>
-                    <RootModelProvider>
-                        <BrowserRouter>
-                            <Container>
-                                <CssBaseline/>
-                                <MainRoutes/>
-                            </Container>
-                        </BrowserRouter>
-                    </RootModelProvider>
+                <Root/>
             </ThemeProvider>
         </ReactKeycloakProvider>
     );

@@ -10,6 +10,7 @@ import {Navigate, useNavigate} from "react-router-dom";
 import {LinkToLoginView, LinkToOverviewView} from "../../../routes/MainRoutes";
 import {fetchDashboard} from "../DashboardApi";
 import SecuringProgress from "../../../utils/SecuringProgress";
+import DashboardCourses from "./DashboardCourses";
 
 interface ITableRowField {
     rowTitle: string | undefined;
@@ -61,20 +62,16 @@ const TableRowField: FC<ITableRowField> = ({rowTitle, rowValue}) => {
 }
 
 const Dashboard = () => {
-    const {keycloak, initialized} = useKeycloak();
+    const {keycloak} = useKeycloak();
     const theme = useTheme();
     const isMobileSize = useMediaQuery(theme.breakpoints.down('md'));
     console.log(keycloak.tokenParsed)
     const token = keycloak.token;
     console.log(token)
 
-    function testFetchHandler() {
-        return fetchDashboard(token).then(res => console.log(res));
-    }
-
     return (
         <Box>
-            <Paper>
+            <Paper sx={{marginBottom: 5}}>
                 <Grid container p={isMobileSize ? 5 : 10} direction={"column"} rowGap={5}>
                     <TableRowField rowTitle={"Username"} rowValue={keycloak.tokenParsed?.preferred_username}/>
                     <TableRowField rowTitle={"Firstname"} rowValue={keycloak.tokenParsed?.given_name}/>
@@ -82,20 +79,15 @@ const Dashboard = () => {
                     <TableRowField rowTitle={"ID Token"} rowValue={keycloak.token}/>
                     <Grid item alignSelf={"end"}>
                         <Button size={"large"}
-                                onClick={() => keycloak.logout().success(() => <Navigate to={LinkToLoginView()} replace/>)}
+                                onClick={() => keycloak.logout().success(() => <Navigate to={LinkToLoginView()}
+                                                                                         replace/>)}
                         >
                             logout
                         </Button>
                     </Grid>
-                    <Grid item alignSelf={"end"}>
-                        <Button size={"large"}
-                                onClick={() => testFetchHandler()}
-                        >
-                            Test Fetch
-                        </Button>
-                    </Grid>
                 </Grid>
             </Paper>
+            <DashboardCourses/>
         </Box>
     )
 };

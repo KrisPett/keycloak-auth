@@ -1,9 +1,7 @@
 import React from 'react';
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Navigate, Outlet, Route, Routes} from "react-router-dom";
 import ProfileView from "../views/profile/ProfileView";
 import DashboardView from "../views/dashboard/DashboardView";
-import MainStyle from "../root/MainStyle";
-import LoginStyle from "../root/LoginStyle";
 import Page404NotFound from "../utils/Page404NotFound";
 import ProtectedRoute from "./ProtectedRoute";
 import LoginView from "../views/login/LoginView";
@@ -13,8 +11,8 @@ import FinanceView from "../views/finance/FinanceView";
 import LogisticsView from "../views/logistics/LogisticsView";
 import Analytics from "../views/analytics/components/Analytics";
 import {RolesRoute} from "./RolesRoute";
-import {CircularProgress, Typography} from "@mui/material";
-
+import MainStyle from "../root/MainStyle";
+import LoginStyle from "../root/LoginStyle";
 
 /* ROUTE LINKS */
 export const LinkToOverviewView = () => "/dashboard/overview";
@@ -27,7 +25,7 @@ export const LinkTo404NotFound = () => "404";
 /* ROUTE LINKS */
 
 export default function MainRouter() {
-    const {keycloak, initialized} = useKeycloak();
+    const {keycloak} = useKeycloak();
 
     return (
         <Routes>
@@ -36,7 +34,8 @@ export default function MainRouter() {
                 <Route path={LinkToOverviewView()} element={<DashboardView/>}/>
                 <Route path={LinkToAnalyticsView()} element={<Analytics/>}/>
                 <Route path={LinkToFinanceView()} element={<RolesRoute roles={["user"]}><FinanceView/></RolesRoute>}/>
-                <Route path={LinkToLogisticsView()} element={<RolesRoute roles={["employee"]}><LogisticsView/></RolesRoute>}/>
+                <Route path={LinkToLogisticsView()}
+                       element={<RolesRoute roles={["employee"]}><LogisticsView/></RolesRoute>}/>
                 <Route path={LinkToProfileView()} element={<ProfileView/>}/>
             </Route>
             <Route path={"/"} element={<LoginStyle/>}>
