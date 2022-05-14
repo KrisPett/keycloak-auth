@@ -1,6 +1,6 @@
 {
   "realm": "chainqt3",
-  "auth-server-url": "http://localhost:8080/",
+  "auth-server-url": "https://iam-keycloak.win/auth",
   "ssl-required": "external",
   "resource": "chainqt3-keycloak",
   "public-client": true,
