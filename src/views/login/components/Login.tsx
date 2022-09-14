@@ -6,15 +6,15 @@ import {LinkToOverviewView} from "../../../routes/MainRoutes";
 import SecuringProgress from "../../../utils/SecuringProgress";
 
 const Login = () => {
-    const {keycloak, initialized} = useKeycloak();
+    // const {keycloak, initialized} = useKeycloak();
 
     return (
         <Grid container justifyContent={"center"} marginTop={15}>
             <Button
-                onClick={() => keycloak.login().success(() => <Navigate to={LinkToOverviewView()} replace/>)}>
-                Keycloak Login
+                // onClick={() => keycloak.login().success(() => <Navigate to={LinkToOverviewView()} replace/>)}
+                >
+                Keycloak Login Test Aws amplifier
             </Button>
-            <div>test</div>
         </Grid>
     );
 };

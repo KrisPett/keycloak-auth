@@ -8,11 +8,11 @@ import Root from "./root/Root";
 function App() {
 
     return (
-        <ReactKeycloakProvider authClient={keycloak}>
+        // <ReactKeycloakProvider authClient={keycloak}>
             <ThemeProvider theme={mainTheme}>
                 <Root/>
             </ThemeProvider>
-        </ReactKeycloakProvider>
+        // </ReactKeycloakProvider>
     );
 }
 
