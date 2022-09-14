@@ -14,6 +14,7 @@ const Login = () => {
                 onClick={() => keycloak.login().success(() => <Navigate to={LinkToOverviewView()} replace/>)}>
                 Keycloak Login
             </Button>
+            <div>test</div>
         </Grid>
     );
 };
